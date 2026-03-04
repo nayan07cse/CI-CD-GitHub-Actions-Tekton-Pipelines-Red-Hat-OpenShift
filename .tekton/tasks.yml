@@ -4,7 +4,6 @@ kind: Task
 metadata:
   name: cleanup
 spec:
-  description: This task will clean up a workspace by deleting all the files.
   workspaces:
     - name: source
   steps:
@@ -34,59 +33,27 @@ spec:
           rm -rf "${WORKSPACE_SOURCE_PATH}"/..?*
         fi
 
+
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: flake8
+  name: nose
 spec:
   workspaces:
     - name: source
-
   params:
-    - name: image
-      description: Python image to run flake8
-      type: string
-      default: python:3.9-slim
-
     - name: args
-      description: Arguments to pass to flake8
+      description: Arguments to pass to nose
       type: string
-      default: "--count --max-complexity=10 --max-line-length=127"
-
+      default: "-v"
   steps:
-    - name: lint
-      image: $(params.image)
+    - name: nosetests
+      image: python:3.9-slim
       workingDir: $(workspaces.source.path)
       script: |
         #!/bin/bash
         set -e
-        python -m pip install --upgrade pip
-        pip install flake8
-        flake8 $(params.args) .
-
----
-apiVersion: tekton.dev/v1beta1
-kind: Task
-metadata:
-  name: nose-tests
-spec:
-  description: Run Python unit tests using nose
-  workspaces:
-    - name: source
-  params:
-    - name: image
-      description: Python image to run nose tests
-      type: string
-      default: python:3.9-slim
-  steps:
-    - name: run-tests
-      image: $(params.image)
-      workingDir: $(workspaces.source.path)
-      script: |
-        #!/bin/bash
-        set -e
-        python -m pip install --upgrade pip
-        pip install nose
-        nosetests -v
-
+        python -m pip install --upgrade pip wheel
+        pip install -r requirements.txt
+        nosetests $(params.args)
