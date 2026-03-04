@@ -1,7 +1,6 @@
-# CI/CD Tools and Practices Final Project  
-## Project Name: ci-cd-final-project
+# CI/CD Tools
 
-This repository contains the **Final Project (Option A: Python)** for the **Continuous Integration and Continuous Delivery (CI/CD)** course by **IBM on Coursera**.  
+This repository contains the **Project (Option A: Python)** for the **Continuous Integration and Continuous Delivery (CI/CD)** course by **IBM**.  
 The project demonstrates an end-to-end CI/CD workflow using **GitHub Actions**, **Tekton Pipelines**, and **Red Hat OpenShift**.
 
 ---
@@ -37,8 +36,7 @@ This project was developed and tested in the **IBM Skills Network Labs (SN Labs)
 - Tekton Pipelines  
 - Docker  
 - Kubernetes  
-- Red Hat OpenShift  
-- IBM Skills Network Labs  
+- Red Hat OpenShift   
 
 ---
 
@@ -101,4 +99,4 @@ This project demonstrates practical implementation of **CI/CD best practices** u
 
 **Nayan Nath**  
 Final Project – CI/CD Tools and Practices  
-IBM | Coursera
+IBM
